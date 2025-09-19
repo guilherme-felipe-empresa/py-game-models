@@ -9,12 +9,12 @@ def main() -> None:
         file_json = json.load(file)
 
     for player in file_json:
-        race, created_race = Race.objects.get_or_create(
+        race, _ = Race.objects.get_or_create(
             name=file_json[player]["race"]["name"],
             description=file_json[player]["race"]["description"]
         )
         for skills_json in file_json[player]["race"]["skills"]:
-            skill, created_skiil = Skill.objects.get_or_create(
+            skill, _ = Skill.objects.get_or_create(
                 name=skills_json["name"],
                 bonus=skills_json["bonus"],
                 race=race
